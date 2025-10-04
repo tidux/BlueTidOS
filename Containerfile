@@ -1,5 +1,5 @@
 # Allow build scripts to be referenced without being copied into the final image
-FROM scratch AS ctx
+FROM docker.io/jgoerzen/docker-nncpnet-mailnode:latest AS ctx
 COPY build_files /
 
 # Base Image

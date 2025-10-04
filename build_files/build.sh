@@ -10,7 +10,8 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+dnf5 install -y tmux mosh emacs git-email postfix
+
 
 # Use a COPR Example:
 #
@@ -22,3 +23,28 @@ dnf5 install -y tmux
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+
+### copy shit over from the NNCPNet base container we're using instead of Scratch
+
+# NNCP binaries
+cp -a /ctx/usr/local/bin/nncp* /usr/local/bin/
+
+# fix systemd configs to point to /usr/local instead of /opt
+cp -a /ctx/etc/systemd/system/nncp* /usr/etc/systemd/system
+for NNCPFILE in /usr/etc/systemd/system/nncp*; do
+    sed -i 's/opt\/nncpnet/usr\/local/g' $NNCPFILE
+done
+
+# NNCPNet files install
+cp -a /ctx/opt/nncpnet/bin/* /usr/local/bin
+mkdir /usr/local/etc/nncpnet
+cp -a /ctx/opt/nncpnet/etc/* /usr/local/etc/nncpnet
+rm /usr/local/etc/nncpnet/cfg/selfprv /usr/local/etc/nncpnet/cfg/selfpub
+sed -i 's/opt\/nncpnet/usr\/local/g' /usr/local/bin/nodelist-freq
+mkdir /usr/local/etc/nncp-cfg.active
+chown nncp:nncp /usr/local/etc/nncp-cfg.active
+ln -s /usr/local/etc/nncp-cfg.active /usr/local/etc/nncp-cfg
+# This is weird but symlinking a directory to a .hjson name lets NNCP parse it correctly
+ln -s /usr/local/etc/nncp-cfg /usr/local/etc/nncp.hjson
+
+systemctl daemon-reload && systemctl enable nncpnet-freq-nodelist.timer

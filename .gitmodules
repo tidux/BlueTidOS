@@ -1,0 +1,3 @@
+[submodule "docker-nncpnet-mailnode"]
+	path = docker-nncpnet-mailnode
+	url = https://salsa.debian.org/jgoerzen/docker-nncpnet-mailnode/
