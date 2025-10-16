@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux mosh emacs git-email postfix
+dnf5 install -y tmux mosh emacs git-email git-lfs postfix ckermit maildir-utils msmtp
 
 
 # Use a COPR Example:
@@ -30,8 +30,8 @@ systemctl enable podman.socket
 cp -a /ctx/usr/local/bin/nncp* /usr/local/bin/
 
 # fix systemd configs to point to /usr/local instead of /opt
-cp -a /ctx/etc/systemd/system/nncp* /usr/etc/systemd/system
-for NNCPFILE in /usr/etc/systemd/system/nncp*; do
+cp -a /ctx/etc/systemd/system/nncp* /usr/lib/systemd/system
+for NNCPFILE in /lib/systemd/system/nncp*; do
     sed -i 's/opt\/nncpnet/usr\/local/g' $NNCPFILE
 done
 

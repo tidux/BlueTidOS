@@ -4,80 +4,80 @@ set -eo pipefail
 
 echo "nncpnet: Configuring system."
 
-NNCPCFGDIR="/usr/local/etc/nncpnet/cfg"
+NNCPCFGDIR="/tmp/nncpnet/cfg"
 
 if [ -n "$NNCPNET_MYNODENAME" ]; then
-    echo "$NNCPNET_MYNODENAME" > /usr/local/etc/nncpnet/cfg/mynodename
+    echo "$NNCPNET_MYNODENAME" > /tmp/nncpnet/cfg/mynodename
 fi
 
 if [ -n "$NNCPNET_ID" ]; then
-    echo "$NNCPNET_ID" > /usr/local/etc/nncpnet/cfg/selfpub/id
+    echo "$NNCPNET_ID" > /tmp/nncpnet/cfg/selfpub/id
 fi
 
 if [ -n "$NNCPNET_EXCHPUB" ]; then
-    echo "$NNCPNET_EXCHPUB" > /usr/local/etc/nncpnet/cfg/selfpub/exchpub
+    echo "$NNCPNET_EXCHPUB" > /tmp/nncpnet/cfg/selfpub/exchpub
 fi
 
 if [ -n "$NNCPNET_NOISEPUB" ]; then
-    echo "$NNCPNET_NOISEPUB" > /usr/local/etc/nncpnet/cfg/selfpub/noisepub
+    echo "$NNCPNET_NOISEPUB" > /tmp/nncpnet/cfg/selfpub/noisepub
 fi
 
 if [ -n "$NNCPNET_SIGNPUB" ]; then
-    echo "$NNCPNET_SIGNPUB" > /usr/local/etc/nncpnet/cfg/selfpub/signpub
+    echo "$NNCPNET_SIGNPUB" > /tmp/nncpnet/cfg/selfpub/signpub
 fi
 
 if [ -n "$NNCPNET_EXCHPRV" ]; then
-    echo "$NNCPNET_EXCHPRV" > /usr/local/etc/nncpnet/cfg/selfprv/exchprv
+    echo "$NNCPNET_EXCHPRV" > /tmp/nncpnet/cfg/selfprv/exchprv
 fi
 
 if [ -n "$NNCPNET_NOISEPRV" ]; then
-    echo "$NNCPNET_NOISEPRV" > /usr/local/etc/nncpnet/cfg/selfprv/noiseprv
+    echo "$NNCPNET_NOISEPRV" > /tmp/nncpnet/cfg/selfprv/noiseprv
 fi
 
 if [ -n "$NNCPNET_SIGNPRV" ]; then
-    echo "$NNCPNET_SIGNPRV" > /usr/local/etc/nncpnet/cfg/selfprv/signprv
+    echo "$NNCPNET_SIGNPRV" > /tmp/nncpnet/cfg/selfprv/signprv
 fi
 
 if [ -n "$NNCPNET_LOCALUSER_NAME" ]; then
-    echo "$NNCPNET_LOCALUSER_NAME" > /usr/local/etc/nncpnet/localuser-name
+    echo "$NNCPNET_LOCALUSER_NAME" > /tmp/nncpnet/localuser-name
 fi
 
 if [ -n "$NNCPNET_LOCALUSER_UID" ]; then
-    echo "$NNCPNET_LOCALUSER_UID" > /usr/local/etc/nncpnet/localuser-uid
+    echo "$NNCPNET_LOCALUSER_UID" > /tmp/nncpnet/localuser-uid
 fi
 
 if [ -n "$NNCPNET_LOCALUSER_COMMENT" ]; then
-    echo "$NNCPNET_LOCALUSER_COMMENT" > /usr/local/etc/nncpnet/localuser-comment
+    echo "$NNCPNET_LOCALUSER_COMMENT" > /tmp/nncpnet/localuser-comment
 fi
 
 if [ -n "$NNCPNET_LOCALUSER_PWCRYPT" ]; then
-	echo "$NNCPNET_LOCALUSER_PWCRYPT" > /usr/local/etc/nncpnet/localuser-pwcrypt
-	chmod 0600 /usr/local/etc/nncpnet/localuser-pwcrypt
+	echo "$NNCPNET_LOCALUSER_PWCRYPT" > /tmp/nncpnet/localuser-pwcrypt
+	chmod 0600 /tmp/nncpnet/localuser-pwcrypt
 fi
 
 if [ -n "$NNCPNET_BRIDGE_MODE" ]; then
-	echo "$NNCPNET_BRIDGE_MODE" > /usr/local/etc/nncpnet/bridge_mode
+	echo "$NNCPNET_BRIDGE_MODE" > /tmp/nncpnet/bridge_mode
 fi
 
 if [ -n "$NNCPNET_BRIDGE_HOST" ]; then
-	echo "$NNCPNET_BRIDGE_HOST" > /usr/local/etc/nncpnet/bridge_host
+	echo "$NNCPNET_BRIDGE_HOST" > /tmp/nncpnet/bridge_host
 fi
 
 # Setting this will cause no nodelist to be requested or processed.
 if [ -n "$NNCPNET_NO_NODELIST" ]; then
-    echo "1" > /usr/local/etc/nncpnet/no-nodelist
+    echo "1" > /tmp/nncpnet/no-nodelist
 fi
 
 # Set to a comma-separated list of nodes to relay through in order to reach
 # quux.
 if [ -n "$NNCPNET_QUUX_VIA" ]; then
-    echo "$NNCPNET_QUUX_VIA" | sed 's/,/\n/g' > /usr/local/etc/nncpnet/nncp-cfg-tmpl/neigh/quux/via
+    echo "$NNCPNET_QUUX_VIA" | sed 's/,/\n/g' > /tmp/nncpnet/nncp-cfg-tmpl/neigh/quux/via
 fi
 
 EXITCODE=0
 
-for FILE in /usr/local/etc/nncpnet/cfg/mynodename /usr/local/etc/nncpnet/cfg/selfpub/{id,exchpub,noisepub,signpub} \
-    /usr/local/etc/nncpnet/cfg/selfprv/{exchprv,noiseprv,signprv}; do
+for FILE in /tmp/nncpnet/cfg/mynodename /tmp/nncpnet/cfg/selfpub/{id,exchpub,noisepub,signpub} \
+    /tmp/nncpnet/cfg/selfprv/{exchprv,noiseprv,signprv}; do
     if [ ! -f "$FILE" ]; then
         echo " *** ERROR: Missing file $FILE or related environment variable"
         echo " *** Expect system to be broken"
@@ -86,8 +86,8 @@ for FILE in /usr/local/etc/nncpnet/cfg/mynodename /usr/local/etc/nncpnet/cfg/sel
 done
 
 if [ "$EXITCODE" = 0 ]; then
-    cp /usr/local/etc/nncpnet/cfg/selfpub/* /usr/local/etc/nncpnet/nncp-cfg-tmpl/self
-    cp /usr/local/etc/nncpnet/cfg/selfprv/* /usr/local/etc/nncpnet/nncp-cfg-tmpl/self
+    cp /tmp/nncpnet/cfg/selfpub/* /tmp/nncpnet/nncp-cfg-tmpl/self
+    cp /tmp/nncpnet/cfg/selfprv/* /tmp/nncpnet/nncp-cfg-tmpl/self
     echo "nncpnet: All required configuration is present."
 fi
 
