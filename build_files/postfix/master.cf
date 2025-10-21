@@ -145,5 +145,8 @@ postlog   unix-dgram n  -       n       -       1       postlogd
 #mailman   unix  -       n       n       -       -       pipe
 #  flags=FRX user=list argv=/usr/lib/mailman/bin/postfix-to-mailman.py
 #  ${nexthop} ${user}
+#
+# NNCP: you must use a new enough version of the NNCPNet utils to pass recipient on
+# the command line.
 nncp      unix  -       n       n       -       -       pipe
-  flags=Fqhu user=nncp argv=nncpnet-transmit -quiet $nexthop sendmail $recipient
+  flags=Fqhu user=nncp argv=nncpnet-transmit $recipient
