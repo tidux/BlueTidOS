@@ -7,3 +7,7 @@ The use of `$HOST` was just for debug prints.  `$RECIPIENT` was due to Exim pass
 
 ### nncpnet-ingest
 `NNCP_SENDER` is set by NNCP which invokes `nncpnet-ingest` on our behalf to convert NNCP packets into email and send them to localhost with Sendmail.  No changes are needed from Exim to Postfix.
+
+## nncp-exec stuff
+
+nncp-rmail-v1 is not a script in PATH, it's a handler in the nncp neighbor config file.  If it doesn't exist for self or quux, update the config from the nodelist.
