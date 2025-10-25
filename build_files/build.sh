@@ -62,6 +62,7 @@ cp -a /ctx/opt/nncpnet/etc/* /etc/nncpnet
 rm -r /etc/nncpnet/cfg/selfprv /etc/nncpnet/cfg/selfpub
 sed -i 's/opt\/nncpnet/usr/g' /usr/bin/nodelist-freq
 mkdir /etc/nncp-cfg.active
+useradd -r nncp
 chown nncp:nncp /etc/nncp-cfg.active
 ln -s /etc/nncp-cfg.active /etc/nncp-cfg
 # This is weird but symlinking a directory to a .hjson name lets NNCP parse it correctly
