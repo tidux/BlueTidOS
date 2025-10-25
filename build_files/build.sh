@@ -24,9 +24,9 @@ dnf5 install -y tmux mosh emacs git-email git-lfs postfix ckermit maildir-utils 
 dnf5 -y copr enable errornointernet/quickshell
 dnf5 -y copr enable rockowitz/ddcutil
 # deps for Caelestia shell
-dnf5 -yuinstall quickshell-git ddcutil libqalculate qt6-base qt6-declarative fish lm-sensors brightnessctl \
+dnf5 -y install quickshell-git ddcutil libqalculate qt6-qtbase qt6-qtdeclarative brightnessctl \
     xdg-terminal-exec swappy cava aubio aubio-lib aubio-python3 xfce-polkit pavucontrol playerctl \
-    qt5-qtwayland qt6-qtwayland vulkan-tools pamixer network-manager-applet \
+    qt5-qtwayland qt6-qtwayland vulkan-tools pamixer network-manager-applet fish lm_sensors \
     hyprland waybar swaylock swayidle swaybg xdg-desktop-portal-hyprland rofi
 
 
@@ -59,7 +59,7 @@ cp -a /ctx/hyprland/usr /usr
 cp -a /ctx/opt/nncpnet/bin/* /usr/bin
 mkdir /etc/nncpnet
 cp -a /ctx/opt/nncpnet/etc/* /etc/nncpnet
-rm /etc/nncpnet/cfg/selfprv /etc/nncpnet/cfg/selfpub
+rm -r /etc/nncpnet/cfg/selfprv /etc/nncpnet/cfg/selfpub
 sed -i 's/opt\/nncpnet/usr/g' /usr/bin/nodelist-freq
 mkdir /etc/nncp-cfg.active
 chown nncp:nncp /etc/nncp-cfg.active
@@ -67,4 +67,4 @@ ln -s /etc/nncp-cfg.active /etc/nncp-cfg
 # This is weird but symlinking a directory to a .hjson name lets NNCP parse it correctly
 ln -s /etc/nncp-cfg /etc/nncp.hjson
 
-systemctl daemon-reload && systemctl enable nncpnet-freq-nodelist.timer
+#systemctl daemon-reload && systemctl enable nncpnet-freq-nodelist.timer
