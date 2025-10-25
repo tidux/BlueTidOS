@@ -10,8 +10,10 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-dnf5 install -y tmux mosh emacs git-email git-lfs postfix ckermit maildir-utils msmtp aerc
+dnf5 install -y tmux mosh emacs git-email git-lfs postfix ckermit maildir-utils msmtp foot \
+    aerc mbsync
 
+# Hyprland
 
 # Use a COPR Example:
 #
@@ -19,6 +21,14 @@ dnf5 install -y tmux mosh emacs git-email git-lfs postfix ckermit maildir-utils 
 # dnf5 -y install package
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
+dnf5 -y copr enable errornointernet/quickshell
+dnf5 -y copr enable rockowitz/ddcutil
+# deps for Caelestia shell
+dnf5 -yuinstall quickshell-git ddcutil libqalculate qt6-base qt6-declarative fish lm-sensors brightnessctl \
+    xdg-terminal-exec swappy cava aubio aubio-lib aubio-python3 xfce-polkit pavucontrol playerctl \
+    qt5-qtwayland qt6-qtwayland vulkan-tools pamixer network-manager-applet \
+    hyprland waybar swaylock swayidle swaybg xdg-desktop-portal-hyprland rofi
+
 
 #### Example for enabling a System Unit File
 
@@ -40,6 +50,10 @@ cp -a /ctx/etc/systemd/system/nncp* /usr/lib/systemd/system
 for NNCPFILE in /lib/systemd/system/nncp*; do
     sed -i 's/opt\/nncpnet/usr/g' $NNCPFILE
 done
+
+# Hyprland files install
+cp -a /ctx/hyprland/etc /etc
+cp -a /ctx/hyprland/usr /usr
 
 # NNCPNet files install
 cp -a /ctx/opt/nncpnet/bin/* /usr/bin
