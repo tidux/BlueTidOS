@@ -1,3 +1,18 @@
+# About This Repo
+
+This repo is the Universal Blue distros, with the following packages laid on top:
+
+* mosh and tmux for more durable terminal workflows
+* git-email, msmtp and git-lfs for working with the Linux kernel and AI models.
+* pgtk Emacs, including mu4e, libgccjit and Doom Emacs dependencies, as it performs best when installed natively as a graphical application.
+* C-Kermit for serial communications, best used with native access to character devices.
+* [NNCP](https://nncp.mirrors.quux.org/), and the NNCPNet tools by John Goerzen.
+* Postfix, configured to work with NNCPNet by default.
+
+# NNCPNet CRITICAL INFORMATION
+
+In order for the default Postfix configuration to deliver your mail correctly, your hostname should be set to <your NNCPNet peer name>.nncpnet.org.
+
 # image-template
 
 This repository is meant to be a template for building your own custom [bootc](https://github.com/bootc-dev/bootc) image. This template is the recommended way to make customizations to any image published by the Universal Blue Project.
