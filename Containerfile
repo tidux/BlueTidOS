@@ -1,7 +1,6 @@
 # Allow build scripts to be referenced without being copied into the final image
-FROM docker.io/jgoerzen/docker-nncpnet-mailnode:latest AS ctx
+FROM docker.io/jgoerzen/nncpnet-mailnode:latest AS ctx
 COPY build_files /
-
 # Base Image
 FROM ghcr.io/ublue-os/bluefin-dx:stable
 
