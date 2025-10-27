@@ -11,7 +11,7 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 dnf5 install -y tmux mosh emacs git-email git-lfs postfix ckermit maildir-utils msmtp foot \
-    aerc mbsync
+    aerc mbsync btop
 
 # Hyprland
 
@@ -39,6 +39,12 @@ dnf5 -y install dms qt6-qtmultimedia cliphist ghostty hyprpicker matugen
 systemctl enable podman.socket
 
 # download shit from github
+
+# dgop CLI for DMS
+curl -L https://github.com/AvengeMedia/dgop/releases/latest/download/dgop-linux-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').gz |
+    gunzip |
+    tee /usr/local/bin/dgop > /dev/null && \
+        chmod +x /usr/local/bin/dgop
 
 # Rio terminal
 #RIO_VERSION=0.2.32
