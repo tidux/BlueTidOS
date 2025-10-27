@@ -29,6 +29,10 @@ dnf5 -y install quickshell-git ddcutil libqalculate qt6-qtbase qt6-qtdeclarative
     qt5-qtwayland qt6-qtwayland vulkan-tools pamixer network-manager-applet fish lm_sensors \
     hyprland waybar swaylock swayidle swaybg xdg-desktop-portal-hyprland rofi
 
+# deps for DankMaterialShell
+dnf5 -y copr enable avengemedia/danklinux
+dnf5 -y copr enable avengemedia/dms
+dnf5 -y install dms qt6-qtmultimedia cliphist ghostty hyprpicker matugen
 
 #### Example for enabling a System Unit File
 
