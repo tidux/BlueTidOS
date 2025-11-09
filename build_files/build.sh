@@ -65,6 +65,9 @@ done
 cp -a /ctx/hyprland/etc /etc
 cp -a /ctx/hyprland/usr /usr
 
+# Postfix configs install
+cp -a /ctx/postfix /etc/postfix
+
 # NNCPNet files install
 cp -a /ctx/opt/nncpnet/bin/* /usr/bin
 mkdir /etc/nncpnet
