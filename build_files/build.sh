@@ -23,6 +23,8 @@ dnf5 install -y tmux mosh emacs git-email git-lfs postfix ckermit maildir-utils 
 # dnf5 -y copr disable ublue-os/staging
 dnf5 -y copr enable errornointernet/quickshell
 dnf5 -y copr enable rockowitz/ddcutil
+# required for Fedora 43 - main Fedora package is orphaned
+dnf5 -y copr enable solopasha/hyprland
 # deps for Caelestia shell
 dnf5 -y install quickshell-git ddcutil libqalculate qt6-qtbase qt6-qtdeclarative brightnessctl \
     xdg-terminal-exec swappy cava aubio aubio-lib aubio-python3 xfce-polkit pavucontrol playerctl \
