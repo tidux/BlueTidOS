@@ -29,7 +29,7 @@ dnf5 -y copr enable solopasha/hyprland
 dnf5 -y install quickshell-git ddcutil libqalculate qt6-qtbase qt6-qtdeclarative brightnessctl \
     xdg-terminal-exec swappy cava aubio aubio-lib aubio-python3 xfce-polkit pavucontrol playerctl \
     qt5-qtwayland qt6-qtwayland vulkan-tools pamixer network-manager-applet fish lm_sensors \
-    hyprland waybar swaylock swayidle swaybg xdg-desktop-portal-hyprland rofi
+    hyprland hyprland-qtutils waybar swaylock swayidle swaybg xdg-desktop-portal-hyprland rofi
 
 # deps for DankMaterialShell
 dnf5 -y copr enable avengemedia/danklinux
