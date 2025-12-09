@@ -21,32 +21,32 @@ dnf5 install -y tmux mosh emacs git-email git-lfs postfix ckermit maildir-utils 
 # dnf5 -y install package
 # Disable COPRs so they don't end up enabled on the final image:
 # dnf5 -y copr disable ublue-os/staging
-dnf5 -y copr enable errornointernet/quickshell
-dnf5 -y copr enable rockowitz/ddcutil
+#dnf5 -y copr enable errornointernet/quickshell
+#dnf5 -y copr enable rockowitz/ddcutil
 # required for Fedora 43 - main Fedora package is orphaned
-dnf5 -y copr enable solopasha/hyprland
+#dnf5 -y copr enable solopasha/hyprland
 # deps for Caelestia shell
-dnf5 -y install quickshell-git ddcutil libqalculate qt6-qtbase qt6-qtdeclarative brightnessctl \
-    xdg-terminal-exec swappy cava aubio aubio-lib aubio-python3 xfce-polkit pavucontrol playerctl \
-    qt5-qtwayland qt6-qtwayland vulkan-tools pamixer network-manager-applet fish lm_sensors \
-    hyprland hyprland-qtutils waybar swaylock swayidle swaybg xdg-desktop-portal-hyprland rofi
+#dnf5 -y install quickshell-git ddcutil libqalculate qt6-qtbase qt6-qtdeclarative brightnessctl \
+#    xdg-terminal-exec swappy cava aubio aubio-lib aubio-python3 xfce-polkit pavucontrol playerctl \
+#    qt5-qtwayland qt6-qtwayland vulkan-tools pamixer network-manager-applet fish lm_sensors \
+#    hyprland hyprland-qtutils waybar swaylock swayidle swaybg xdg-desktop-portal-hyprland rofi
 
 # deps for DankMaterialShell
-dnf5 -y copr enable avengemedia/danklinux
-dnf5 -y copr enable avengemedia/dms
-dnf5 -y install dms qt6-qtmultimedia cliphist ghostty hyprpicker matugen
+#dnf5 -y copr enable avengemedia/danklinux
+#dnf5 -y copr enable avengemedia/dms
+#dnf5 -y install dms qt6-qtmultimedia cliphist ghostty hyprpicker matugen
 
 #### Example for enabling a System Unit File
 
-systemctl enable podman.socket
+#systemctl enable podman.socket
 
 # download shit from github
 
 # dgop CLI for DMS
-curl -L https://github.com/AvengeMedia/dgop/releases/latest/download/dgop-linux-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').gz |
-    gunzip |
-    tee /usr/local/bin/dgop > /dev/null && \
-        chmod +x /usr/local/bin/dgop
+#curl -L https://github.com/AvengeMedia/dgop/releases/latest/download/dgop-linux-$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').gz |
+#    gunzip |
+#    tee /usr/local/bin/dgop > /dev/null && \
+#        chmod +x /usr/local/bin/dgop
 
 # Rio terminal
 #RIO_VERSION=0.2.32
