@@ -9,6 +9,8 @@ This repo is the Universal Blue distros, with the following packages laid on top
 * [NNCP](https://nncp.mirrors.quux.org/), and the NNCPNet tools by John Goerzen.
 * Postfix, configured to work with NNCPNet by default.
 
+This repository is temporarily archived until I have time to fix the build and integration issues.
+
 # NNCPNet CRITICAL INFORMATION
 
 In order for the default Postfix configuration to deliver your mail correctly, your hostname should be set to <your NNCPNet peer name>.nncpnet.org.
